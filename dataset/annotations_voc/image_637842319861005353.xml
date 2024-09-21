@@ -1,0 +1,37 @@
+<annotation>
+	<folder>my-project-name</folder>
+	<filename>image_637842319861005353.bmp</filename>
+	<path>/my-project-name/image_637842319861005353.bmp</path>
+	<source>
+		<database>Unspecified</database>
+	</source>
+	<size>
+		<width>1388</width>
+		<height>1038</height>
+		<depth>3</depth>
+	</size>
+	<object>
+		<name>logo</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>73</xmin>
+			<ymin>540</ymin>
+			<xmax>144</xmax>
+			<ymax>652</ymax>
+		</bndbox>
+	</object>
+	<object>
+		<name>logo</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>1074</xmin>
+			<ymin>565</ymin>
+			<xmax>1149</xmax>
+			<ymax>677</ymax>
+		</bndbox>
+	</object>
+</annotation>
