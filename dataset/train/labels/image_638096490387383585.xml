@@ -1,0 +1,37 @@
+<annotation>
+	<folder>uhk.fim.relayml</folder>
+	<filename>image_638096490387383585.bmp</filename>
+	<path>/uhk.fim.relayml/image_638096490387383585.bmp</path>
+	<source>
+		<database>Unspecified</database>
+	</source>
+	<size>
+		<width>1388</width>
+		<height>1038</height>
+		<depth>3</depth>
+	</size>
+	<object>
+		<name>logo</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>67</xmin>
+			<ymin>566</ymin>
+			<xmax>138</xmax>
+			<ymax>675</ymax>
+		</bndbox>
+	</object>
+	<object>
+		<name>logo</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>1081</xmin>
+			<ymin>582</ymin>
+			<xmax>1149</xmax>
+			<ymax>692</ymax>
+		</bndbox>
+	</object>
+</annotation>

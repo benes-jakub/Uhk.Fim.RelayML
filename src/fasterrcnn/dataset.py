@@ -4,12 +4,12 @@ import torch
 from PIL import Image
 
 class VOCDataset(torch.utils.data.Dataset):
-    def __init__(self, root_dir, annotation_dir, transforms=None):
+    def __init__(self, root_dir, annotation_dir, transforms=None):        
         self.root_dir = root_dir
         self.annotation_dir = annotation_dir
         self.transforms = transforms
         self.images = [f for f in os.listdir(root_dir) if f.endswith(".bmp")]
-        self.annotations = [f for f in os.listdir(annotation_dir) if f.endswith(".xml")]        
+        self.annotations = [f for f in os.listdir(annotation_dir) if f.endswith(".xml")]                
 
     def __len__(self):
         return len(self.images)
@@ -34,7 +34,7 @@ class VOCDataset(torch.utils.data.Dataset):
 
         return img, target
 
-    def parse_voc_xml(self, xml_file):
+    def parse_voc_xml(self, xml_file):                
         tree = ET.parse(xml_file)
         root = tree.getroot()     
 

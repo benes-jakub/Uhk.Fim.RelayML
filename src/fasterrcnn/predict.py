@@ -48,7 +48,7 @@ def fasterrcnn_predict(image_path):
         prediction = model(input_image)
 
     boxes = prediction[0]['boxes'].cpu().numpy()
-    
-    plot_image_with_boxes(image, boxes)
+    # plot_image_with_boxes(image, boxes)
+    return boxes    
 
     
