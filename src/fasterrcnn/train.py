@@ -34,7 +34,7 @@ def fasterrcnn_train_and_save_model():
 
     # Definice optimalizátoru
     optimizer = torch.optim.SGD(model.parameters(), lr=0.005, momentum=0.9, weight_decay=0.0005)
-    num_epochs = 10
+    num_epochs = 1
 
     # Set device
     model.to(device)

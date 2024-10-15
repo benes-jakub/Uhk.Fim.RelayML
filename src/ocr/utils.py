@@ -1,6 +1,11 @@
 
 import cv2
 import numpy as np
+from enum import Enum
+
+class OCRType(Enum):
+    TESSERACT = 1,
+    EASY_OCR = 2
 
 def rotate_image(image, angle, center = None, scale = 1.0):
     (h, w) = image.shape[:2]

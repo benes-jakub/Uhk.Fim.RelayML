@@ -9,14 +9,14 @@ from colorama import Fore, init
 import numpy as np
 from scipy import ndimage
 import pytesseract
-from .utils import rotate_image, remove_unnecessary_symbols, get_string_from_results, threshold_binary, threshold_adaptive_mean, threshold_adaptive_gaussian, threshold_adaptive_otsu, erode, dilate
-
+from .utils import OCRType, rotate_image, remove_unnecessary_symbols, get_string_from_results, threshold_binary, threshold_adaptive_mean, threshold_adaptive_gaussian, threshold_adaptive_otsu, erode, dilate
+import easyocr
 
 IMAGE_EXTENSION = ".bmp"
 PATH_DEBUG_SAVE = "../debug/"
 
 
-def execute_ocr(dataset_path, text_to_find, crop_regions, accuracy, preprocessing, debug, disable_print):   
+def execute_ocr(dataset_path, text_to_find, crop_regions, accuracy, preprocessing, ocr_type, debug, disable_print):   
     if debug:
         shutil.rmtree(PATH_DEBUG_SAVE)
         os.mkdir(PATH_DEBUG_SAVE)
@@ -110,11 +110,17 @@ def execute_ocr(dataset_path, text_to_find, crop_regions, accuracy, preprocessin
         # https://muthu.co/all-tesseract-ocr-options/
         # tesseract --help-oem
         # tesseract --help-psm
-        custom_config = r'--oem 3 --psm 10 -c tessedit_char_whitelist=' + text_to_find            
 
-        # Execute Tesseract for both images
-        result_1 = pytesseract.image_to_string(rotated_image_1, config=custom_config).upper()
-        result_2 = pytesseract.image_to_string(rotated_image_2, config=custom_config).upper()
+        if ocr_type == OCRType.TESSERACT:
+            custom_config = r'--oem 3 --psm 10 -c tessedit_char_whitelist=' + text_to_find            
+            # Execute Tesseract for both images
+            result_1 = pytesseract.image_to_string(rotated_image_1, config=custom_config).upper()
+            result_2 = pytesseract.image_to_string(rotated_image_2, config=custom_config).upper()
+
+        if ocr_type == OCRType.EASY_OCR:
+            reader = easyocr.Reader(['en'])
+            result_1 = reader.readtext(rotated_image_1, detail=0, allowlist=text_to_find)[0]
+            result_2 = reader.readtext(rotated_image_2, detail=0, allowlist=text_to_find)[0]
 
         # Remove unnecessary symbols
         result_1 = remove_unnecessary_symbols(result_1, len(text_to_find))
