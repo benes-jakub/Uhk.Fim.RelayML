@@ -17,6 +17,8 @@ PATH_DEBUG_SAVE = "../debug/"
 
 
 def execute_ocr(dataset_path, text_to_find, crop_regions, accuracy, preprocessing, ocr_type, debug, disable_print):   
+    timer_start = time.time()
+
     if debug:
         shutil.rmtree(PATH_DEBUG_SAVE)
         os.mkdir(PATH_DEBUG_SAVE)
@@ -43,8 +45,7 @@ def execute_ocr(dataset_path, text_to_find, crop_regions, accuracy, preprocessin
         print("\n")
 
         print("Looking for text...")
-
-    timer_start = time.time()
+    
     count_positive = 0
     for ind, img in enumerate(image_list, start = 0): 
         img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)  
@@ -110,7 +111,7 @@ def execute_ocr(dataset_path, text_to_find, crop_regions, accuracy, preprocessin
         # https://muthu.co/all-tesseract-ocr-options/
         # tesseract --help-oem
         # tesseract --help-psm
-
+        
         if ocr_type == OCRType.TESSERACT:
             custom_config = r'--oem 3 --psm 10 -c tessedit_char_whitelist=' + text_to_find            
             # Execute Tesseract for both images
@@ -120,7 +121,7 @@ def execute_ocr(dataset_path, text_to_find, crop_regions, accuracy, preprocessin
         if ocr_type == OCRType.EASY_OCR:
             reader = easyocr.Reader(['en'])
             result_1 = reader.readtext(rotated_image_1, detail=0, allowlist=text_to_find)[0]
-            result_2 = reader.readtext(rotated_image_2, detail=0, allowlist=text_to_find)[0]
+            result_2 = reader.readtext(rotated_image_2, detail=0, allowlist=text_to_find)[0]        
 
         # Remove unnecessary symbols
         result_1 = remove_unnecessary_symbols(result_1, len(text_to_find))
@@ -149,7 +150,8 @@ def execute_ocr(dataset_path, text_to_find, crop_regions, accuracy, preprocessin
         print("Not found: " + str(len(image_names) - count_positive))
         # print("Reliability: " + str(count_positive / (len(image_names)) * 100) + "%")
         print("Reliability: " + str(count_positive / (len(image_names))))
-        print("Duration: " + str(time.time() - timer_start) + "s")
+        timer_end = time.time()
+        print("Duration: " + str(timer_end - timer_start) + "s")
 
     return str(count_positive / (len(image_names)))
 
