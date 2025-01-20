@@ -22,21 +22,7 @@ def plot_image_with_boxes(image, boxes):
     plt.show()
 
 
-def fasterrcnn_predict(image_path):        
-    device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu') 
-    print("Device: " + str(device))
-
-    # Load model
-    model = fasterrcnn_resnet50_fpn()
-    in_features = model.roi_heads.box_predictor.cls_score.in_features
-    model.roi_heads.box_predictor = torchvision.models.detection.faster_rcnn.FastRCNNPredictor(in_features, 2)
-
-    model.load_state_dict(torch.load(PATH_MODEL, weights_only=True))        
-    model.to(device)
-
-    # Prediction
-    model.eval()
-        
+def fasterrcnn_predict(image_path, model, device):                    
     image = Image.open(image_path).convert("RGB")
 
     # Převedeme obrázek na tensor a přesuneme na správné zařízení (např. GPU)
@@ -48,7 +34,7 @@ def fasterrcnn_predict(image_path):
         prediction = model(input_image)
 
     boxes = prediction[0]['boxes'].cpu().numpy()
-    # plot_image_with_boxes(image, boxes)
+    # plot_image_with_boxes(image, boxes)    
     return boxes    
 
     

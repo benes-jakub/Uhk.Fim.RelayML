@@ -17,7 +17,7 @@ def save_image(image, output_path):
 def augment_images(image):
     aug = iaa.Sequential([
         iaa.SomeOf((1, 3), [ # Použij 1 až 3 augmentační metody
-            iaa.Affine(rotate=(-5, 5)),                 # Rotace o -10° až +10°            
+            iaa.Affine(rotate=(-2, 2)),                 # Rotace o -10° až +10°            
             iaa.AdditiveGaussianNoise(scale=(0, 0.05*255)),# Gaussianův šum
             iaa.MotionBlur(k=3),                          # Motion blur
             iaa.Multiply((0.8, 1.2)),                     # Změna jasu
@@ -31,8 +31,7 @@ def augment_images(image):
 # Funkce pro zpracování obrázků
 def process_images(input_dir, output_dir):
     # Načte všechny obrázky z input_dir
-    image_paths = glob(os.path.join(input_dir, "*.bmp"))  # Změň příponu podle formátu obrázků
-    print(image_paths)
+    image_paths = glob(os.path.join(input_dir, "*.bmp"))  # Změň příponu podle formátu obrázků    
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
 
@@ -55,7 +54,7 @@ def process_images(input_dir, output_dir):
 
 # Hlavní funkce
 if __name__ == "__main__":    
-    input_dir = "../../dataset/train/PE514F03"  # Cesta k adresáři s originálními obrázky
-    output_dir = "../../dataset/train/PE514F03/augmented" # Cesta k adresáři, kam uložit augmentované obrázky
+    input_dir = "../../dataset/train/PE514024"  # Cesta k adresáři s originálními obrázky
+    output_dir = "../../dataset/train/PE514024_augmented" # Cesta k adresáři, kam uložit augmentované obrázky
 
     process_images(input_dir, output_dir)
