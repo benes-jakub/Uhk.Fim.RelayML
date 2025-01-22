@@ -1,0 +1,4 @@
+train: C:\_UHK\Uhk.Fim.RelayML\dataset\train\merged_yolo\images\train
+val: C:\_UHK\Uhk.Fim.RelayML\dataset\train\merged_yolo\images\val
+nc: 1 # Počet tříd (např. 1 pro loga)
+names: ["logo"]
