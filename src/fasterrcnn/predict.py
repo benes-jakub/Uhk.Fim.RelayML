@@ -23,7 +23,7 @@ def plot_image_with_boxes(image, boxes):
 
 
 def fasterrcnn_predict(image_path, model, device):                    
-    image = Image.open(image_path).convert("RGB")
+    image = Image.open(image_path).convert("RGB")    
 
     # Převedeme obrázek na tensor a přesuneme na správné zařízení (např. GPU)
     transform = ToTensor()
