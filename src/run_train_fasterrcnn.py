@@ -1,0 +1,3 @@
+from models.fasterrcnn.train import fasterrcnn_train_and_save_model
+
+fasterrcnn_train_and_save_model()

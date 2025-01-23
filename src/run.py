@@ -7,9 +7,9 @@ import glob
 from ocr.ocr import execute_ocr, OCRType
 
 # fasterrcnn_train_and_save_model()
-# yolo_train_and_save_model()
+yolo_train_and_save_model()
 
-yolo_predict("../dataset/test/PE514F03/test.bmp")
+# yolo_predict("../dataset/test/PE514F03/test.bmp")
 
 #path = "../dataset_BK/test/images/PE514F03/image_638096494070302939.bmp"
 # path = "../dataset/test/PE514F03/"
